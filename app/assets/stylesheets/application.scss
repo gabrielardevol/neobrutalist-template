@@ -10,3 +10,31 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+
+// Gabriel
+@import "components/header";
+@import "components/gallery-grid";
+@import "components/scrollbar";
+@import "components/searchbar";
+
+
+
+body {
+  height: 100vh; overflow: hidden
+}
+.homepage-grid {
+  display: grid;
+  grid-template-columns: 1fr 4fr
+}
+
+@media only screen and (max-width: 480px)  {
+  body {
+    overflow: auto;
+  }
+  .homepage-grid {
+    display: grid;
+    grid-template-columns: 1fr
+  }
+}

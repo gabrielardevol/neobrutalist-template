@@ -1,0 +1,14 @@
+<% list_items = [{name: "page 1", route: "page1"}, {name: "page 2", route: "page2"}, {name: "page 3", route: "page3"}]%>
+
+  <nav>
+    <div style="font-size: 5em; width: 100%; text-align: center;">LOGO</div>
+    <% list_items.each do | item |%>
+    <li><a href=<%=item[:route]%>><%=item[:name]%></a></li>
+    <%end%>
+  </nav>
+
+
+
+<script>
+  headerBar = document.querySelector(".header-bar")
+</script>

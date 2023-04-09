@@ -1,0 +1,47 @@
+#search {
+  color: green;
+  font-size: 0.8em;
+
+}
+
+#search-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: transparent;
+
+}
+
+#search:hover, #search:focus {
+  border: none
+}
+
+input#search, input#search:active, #search:hover, #search:focus  {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid white;
+  color: white;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
+input[type="submit"] {
+  color: white;
+  border: none;
+  padding: 8px 16px;
+
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+input::placeholder {
+  color: white
+}
+
+input:focus {
+  outline: none;
+}

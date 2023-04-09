@@ -1,0 +1,44 @@
+<%# el bottom de la graella està malament, no es veu el margin; falten pixels etc????
+ %>
+
+<% posts = [{image: "testimage.png", text: "lorem ipsum1"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"}] %>
+
+
+<div>
+  <%= render "shared/search-bar"%>
+
+  <div class="gallery-grid" style="">
+    <%@posts.reverse.each do |post|%>
+    <a class="gallery-grid-element <%= 'important' if post.important %>" style="position: relative"  href="<%= post_path(post) %>">
+      <p style="position: absolute; top: 0px;"><%=post.supertitle.upcase%></p>
+
+      <p class="gallery-grid-element-title">
+          <%=post.title%>
+      </p>
+
+      <p style="position: absolute; bottom: 0px;">
+        <%=post.secondtitle%>
+      </p>
+    </a>
+    <%end%>
+  </div>
+</div>
+
+
+
+
+
+<script>
+
+function reSizeGridElements() {
+  document.querySelectorAll(".gallery-grid > a").forEach(function(div) {
+    var width = div.offsetWidth;
+    div.style.height = width + "px";
+  })
+}
+
+reSizeGridElements()
+
+window.addEventListener('resize', reSizeGridElements)
+
+;</script>
