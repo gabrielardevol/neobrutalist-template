@@ -10,6 +10,7 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/post-show";
 
 
 
@@ -22,7 +23,7 @@
 
 
 body {
-  height: 100vh; overflow: hidden
+  // height: 100vh; overflow: hidden
 }
 .homepage-grid {
   display: grid;
