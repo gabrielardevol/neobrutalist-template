@@ -14,8 +14,11 @@
     <header>
       <div class="homepage-grid">
         <%= render "shared/navbar" %>
-        <%= yield %>
-      </div>
+        <div>
+          <%= render "shared/search-bar"%>
+          <%= yield %>
+        </div>
+    </div>
     </header>
 
 

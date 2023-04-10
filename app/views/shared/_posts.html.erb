@@ -1,16 +1,14 @@
 <%# el bottom de la graella està malament, no es veu el margin; falten pixels etc????
  %>
 
-<% posts = [{image: "testimage.png", text: "lorem ipsum1"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"}, {image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"},{image: "testimage.png", text: "lorem ipsum2"}] %>
 
-
-<div>
-  <%= render "shared/search-bar"%>
 
   <div class="gallery-grid" style="height: 94vh">
     <%@posts.reverse[0..9].each do |post|%>
   <a class="gallery-grid-element post <%= 'important' if post.important %>" style="position: relative"  href="<%= post_path(post) %>" target = "_blank">
-      <p style="position: absolute; top: 0px;"><%=post.supertitle.upcase%></p>
+<% if post.supertitle.present? %>
+  <p style="position: absolute; top: 0px;"><%= post.supertitle.upcase %></p>
+<% end %>
 
       <p class="gallery-grid-element-title">
           <%=post.title%>
@@ -23,7 +21,6 @@
     </a>
     <%end%>
   </div>
-</div>
 
 
 
