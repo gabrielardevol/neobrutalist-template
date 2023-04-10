@@ -9,7 +9,7 @@
 # Create 10 posts
 require 'faker'
 
-25.times do
+104.times do
   Post.create(
     title: Faker::Lorem.sentence,
     secondtitle: Faker::Lorem.sentence,

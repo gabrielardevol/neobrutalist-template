@@ -7,6 +7,9 @@ class PostsController < ApplicationController
              else
                Post.all
              end
+
+
+    render layout: false
   end
 
   def show

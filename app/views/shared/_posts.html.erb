@@ -7,13 +7,14 @@
 <div>
   <%= render "shared/search-bar"%>
 
-  <div class="gallery-grid" style="">
-    <%@posts.reverse.each do |post|%>
-    <a class="gallery-grid-element <%= 'important' if post.important %>" style="position: relative"  href="<%= post_path(post) %>">
+  <div class="gallery-grid" style="height: 94vh">
+    <%@posts.reverse[0..9].each do |post|%>
+  <a class="gallery-grid-element post <%= 'important' if post.important %>" style="position: relative"  href="<%= post_path(post) %>" target = "_blank">
       <p style="position: absolute; top: 0px;"><%=post.supertitle.upcase%></p>
 
       <p class="gallery-grid-element-title">
           <%=post.title%>
+          <%=post.id%>
       </p>
 
       <p style="position: absolute; bottom: 0px;">
@@ -42,3 +43,43 @@ reSizeGridElements()
 window.addEventListener('resize', reSizeGridElements)
 
 ;</script>
+
+
+
+
+<script>
+
+
+numberMin = 11
+numberMax = 14
+
+function logWhenScrolledToBottom() {
+  let posts = document.querySelector(".gallery-grid")
+
+  postsScrollPosition = posts.scrollTop
+  postsScrollHeight = posts.scrollHeight
+  postsContainerHeight = posts.offsetHeight
+
+  if (postsScrollPosition + postsContainerHeight > posts.scrollHeight) {
+  fetch(`/posts`)
+  .then(response => response.text())
+  .then(data => {
+  let tempElement = document.createElement('div');
+  tempElement.innerHTML = data.trim();
+  console.log(  tempElement.querySelectorAll(`div:nth-child(n+${numberMin}):nth-child(-n+${numberMax})`))
+  tempElement.querySelectorAll(`div:nth-child(n+${numberMin}):nth-child(-n+${numberMax})`).forEach((a)=> {
+      postsContainer.innerHTML += a.innerHTML;
+    }
+  )
+     numberMax += 4;
+      numberMin += 4;
+  })
+  .catch(error => console.error(error));
+  }
+  reSizeGridElements()
+}
+  let postsContainer = document.querySelector(".gallery-grid")
+
+// Attach the function to the window's scroll event
+postsContainer.addEventListener("scroll", logWhenScrolledToBottom);
+</script>
