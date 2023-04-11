@@ -1,30 +1,20 @@
-<div class="show-grid" style="">
-
-<div class="show-grid-column">1</div>
-<div class="show-grid-column">2</div>
-
-</div>
-
-<div>
-  <p>
-    <strong>Super title:</strong>
-    <%= @post.supertitle %>
-  </p>
-  <p>
-    <strong>Title:</strong>
-    <%= @post.title %>
-  </p>
-  <p>
-    <strong>Second title:</strong>
-    <%= @post.secondtitle %>
-  </p>
-  <p>
-    <strong>Body:</strong>
+<div class="show-grid" style="gap: 1px">
+<div class="show-grid-column" style="">
+  <div style="padding: 0.5em">
+    <p class="super-title">
+      <%= @post.supertitle %>
+    </p>
+    <p class="title" style="padding: 0em 0.8em 0em 0.8em; outline: 1px solid black; border-radius: 2em; width: fit-content; ">
+      <%= @post.title %>
+    </p>
+    <p class="second-title" >
+      <%= @post.secondtitle %>
+    </p>
+    <p class="body"style="max-width: 65ch">
     <%= @post.body %>
-  </p>
-
-  <%= link_to 'Edit', edit_post_path(@post) %> |
-  <%= link_to 'Back', posts_path %>
-
+    </p>
+  </div>
+</div>
+<div class="show-grid-column">2</div>
 
 </div>

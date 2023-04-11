@@ -10,7 +10,10 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "pages/post-show";
+
+
+
+@import "pages/post-show"; //això hauria d'importar-se a l'index de pages
 
 
 

@@ -4,5 +4,20 @@
 
 .show-grid-column {
   outline: 1px solid black;
-  min-height: 96vh
+  min-height: 94vh
+}
+
+@media only screen and (min-width: 480px)  {
+  .show-grid {
+    //min-width: 30em;
+    overflow: auto;
+  }
+  .show-grid-column:first-child {
+    min-width: 60ch;
+    overflow: auto;
+  }
+}
+
+.super-title, .title, .second-title {
+  font-size: 1.5em
 }
