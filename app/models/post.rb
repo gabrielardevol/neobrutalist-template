@@ -6,5 +6,6 @@ class Post < ApplicationRecord
   # attribute :secondtitle, :supertitle, optional: true
   attribute :important, :boolean, default: false
 
+  has_many_attached :photo
 
 end

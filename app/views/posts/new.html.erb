@@ -23,6 +23,16 @@
       <%= form.text_area :body %>
     </div>
 
+    <div class="field">
+      <%# <%= form.input :photo, as: :file %>
+
+  <%= form.label :photo %>
+  <%= form.file_field :photo %>
+
+
+    </div>
+
+
     <div class="actions">
       <%= form.submit "Create Post" %>
     </div>
