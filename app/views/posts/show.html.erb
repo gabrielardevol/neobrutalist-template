@@ -17,10 +17,10 @@
 </div>
 <div class="show-grid-column">
 2
-<% if @post.photo.attached? %>
-  <% @post.photo.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-  <% end %>
+<% if @post.photos.attached? %>
+<% @post.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
 <% end %>
 
 </div>
