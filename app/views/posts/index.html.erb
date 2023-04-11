@@ -1,8 +1,13 @@
 
+
 <%@posts.reverse.each do |post|%>
 <div>
   <a class="gallery-grid-element post <%= 'important' if post.important %>" style="position: relative"  href="<%= post_path(post) %>" target = "_blank">
-  <p style="position: absolute; top: 0px;"><%= post.supertitle&.upcase %></p>
+  <p style="position: absolute; top: 0px;"
+  <%if post.photos.present?%>
+    style= "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path post.photos.first.key, height: 300,  width: 400, crop: :fill %>')"
+  <%end%>
+  ><%= post.supertitle&.upcase %></p>
 
     <p class="gallery-grid-element-title">
         <%=post.title%>
