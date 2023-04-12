@@ -1,4 +1,10 @@
 <style>
+
+nav > li {
+  list-style-type: none;
+  margin-left: 1.5em;
+}
+
 nav > li > a {
  color: black;
  text-decoration: none;
@@ -10,18 +16,24 @@ nav > li > a:hover {
   color: black
  }
 
+.more-margin {
+  margin-left: 3em
+}
+
 
 </style>
 
-<% list_items = [{name: "page 1", route: "page1"}, {name: "page 2", route: "page2"}, {name: "page 3", route: "page3"}]%>
 
   <nav>
     <a href="/" style="text-decoration: none">
       <div style="font-size: 5em; width: 100%; text-align: center; color: black;">LOGO</div>
     </a>
-    <% list_items.each do | item |%>
-    <li><a href=<%=item[:route]%>><%=item[:name]%></a></li>
-    <%end%>
+    <li><a href=page1>page 1</a></li>
+    <li><a href=page2>page 2</a></li>
+    <li><a href=page3>page 3</a></li>
+      <li class="more-margin"><a href=page1>page 1</a></li>
+      <li class="more-margin"><a href=page2>page 2</a></li>
+      <li class="more-margin"><a href=page3>page 3</a></li>
   </nav>
 
 

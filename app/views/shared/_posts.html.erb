@@ -1,29 +1,37 @@
 <%#
 hauria de refactoritzar el shared/posts amb el posts/index %>
 
+<%# delete .important from css %>
+
+<style>
+.gallery-grid-element:hover {
+ color: purple
+}
+
+.gallery-grid-element {
+  font-size: 1.1em
+}
+</style>
 <div class="gallery-grid" style="height: 94vh">
 
   <% @posts.reverse[0..9].each do |post| %>
-    <a class="gallery-grid-element post <%= 'important' if post.important %>" style="position: relative;
-      <% if post.photos.attached? %>
-        background-image: url('<%= cl_image_path post.photos.first.key, height: 300,  width: 400, crop: :fill %>');
-        background-size: cover;
-        background-position: center;
-        background-color: rgba(255, 255, 255, 0.5);
-      <% end %>
-    "
-    href="<%= post_path(post) %>" target="_blank">
-          <div style="position: absolute; width: 100%; height: 100%; background-color: white; opacity: 0.5; z-index: 0"></div>
+    <a class="gallery-grid-element post" style="position: relative;
+    <% if post.photos.attached? %>
+    background-image: url('<%= cl_image_path post.photos.first.key, height: 300,  width: 400, crop: :fill %>');
+    background-size: cover;
+    background-position: center;
+    <% end %>
+    " href="<%= post_path(post) %>" target="_blank">
 
-
+    <div style="position: absolute; width: 100%; height: 100%; background-color: <%= 'white' if post.important %> <%= ['sandybrown', 'darkseagreen'].sample if post.important == false %>; opacity: 0.6; z-index: 0"></div>
 
       <% if post.supertitle.present? %>
-        <p style="position: absolute; top: 0px;"><%= post.supertitle.upcase %></p>
+      <p style="position: absolute; top: 0px;"><%= post.supertitle.upcase %></p>
       <% end %>
 
       <p class="gallery-grid-element-title" style="position: absolute">
-          <%= post.title %>
-          <%= post.id %>
+        <%= post.title %>
+        <%= post.id %>
       </p>
 
       <p style="position: absolute; bottom: 0px;">

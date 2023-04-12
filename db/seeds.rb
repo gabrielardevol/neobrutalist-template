@@ -8,6 +8,8 @@
 
 # Create 10 posts
 require 'faker'
+require "open-uri"
+
 
 104.times do
   Post.create(
@@ -20,3 +22,43 @@ require 'faker'
     important: Faker::Boolean.boolean
   )
 end
+
+
+# post with image
+file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
+post = Post.new(title: "Title", secondtitle: "Secondtitle", supertitle: "Supertitle", body: "body", important: false)
+post.photos.attach(io: file, filename: "nes.png", content_type: "image/png")
+post.save
+
+
+file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png")
+post = Post.new(title: "Title", secondtitle: "Secondtitle", supertitle: "Supertitle", body: "body", important: true)
+post.photos.attach(io: file, filename: "nes.png", content_type: "image/png")
+post.save
+
+file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
+post = Post.new(title: "Title", secondtitle: "Secondtitle", supertitle: "Supertitle", body: "body", important: false)
+post.photos.attach(io: file, filename: "nes.png", content_type: "image/png")
+post.save
+
+post = Post.new(title: "Only Title", secondtitle: "", supertitle: "", body: "body", important: false)
+post.save
+
+
+
+file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png")
+post = Post.new(title: "Only Title", secondtitle: "", supertitle: "", body: "body", important: false)
+post.photos.attach(io: file, filename: "nes.png", content_type: "image/png")
+post.save
+
+
+
+post = Post.new(title: "Title and secondtitle", secondtitle: "with no supertitle", supertitle: "", body: "body", important: true)
+post.save
+
+
+
+file = URI.open("https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/NES-Console-Set.jpg/1200px-NES-Console-Set.jpg")
+post = Post.new(title: "Title, secontitle and image", secondtitle: "", supertitle: "", body: "body", important: false)
+post.photos.attach(io: file, filename: "nes.png", content_type: "image/png")
+post.save
