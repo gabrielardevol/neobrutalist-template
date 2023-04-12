@@ -1,33 +1,39 @@
 <%#
 hauria de refactoritzar el shared/posts amb el posts/index %>
 
+<div class="gallery-grid" style="height: 94vh">
+
+  <% @posts.reverse[0..9].each do |post| %>
+    <a class="gallery-grid-element post <%= 'important' if post.important %>" style="position: relative;
+      <% if post.photos.attached? %>
+        background-image: url('<%= cl_image_path post.photos.first.key, height: 300,  width: 400, crop: :fill %>');
+        background-size: cover;
+        background-position: center;
+        background-color: rgba(255, 255, 255, 0.5);
+      <% end %>
+    "
+    href="<%= post_path(post) %>" target="_blank">
+          <div style="position: absolute; width: 100%; height: 100%; background-color: white; opacity: 0.5; z-index: 0"></div>
 
 
-  <div class="gallery-grid" style="height: 94vh">
-    <%@posts.reverse[0..9].each do |post|%>
-  <a class="gallery-grid-element post <%= 'important' if post.important %>" style="position: relative;
-   <%if post.photos.present?%>
-   color: red; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path post.photos.first.key, height: 300,  width: 400, crop: :fill %>')
-  <%end%>
-   "
-  href="<%= post_path(post) %>" target = "_blank">
-    <% if post.supertitle.present?%>
-      <p style="position: absolute; top: 0px;"><%= post.supertitle.upcase %></p>
-    <% end %>
 
+      <% if post.supertitle.present? %>
+        <p style="position: absolute; top: 0px;"><%= post.supertitle.upcase %></p>
+      <% end %>
 
-
-      <p class="gallery-grid-element-title">
-          <%=post.title%>
-          <%=post.id%>
+      <p class="gallery-grid-element-title" style="position: absolute">
+          <%= post.title %>
+          <%= post.id %>
       </p>
 
       <p style="position: absolute; bottom: 0px;">
-        <%=post.secondtitle%>
+        <%= post.secondtitle %>
       </p>
+
     </a>
-    <%end%>
-  </div>
+  <% end %>
+
+</div>
 
 
 

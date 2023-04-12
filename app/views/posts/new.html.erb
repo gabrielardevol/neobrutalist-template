@@ -1,42 +1,15 @@
-<div>
-  <h1>New Post</h1>
-
-  <%= form_with(model: @post, url: posts_path) do |form| %>
-    <% if @post.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-        <ul>
-        <% @post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title %>
-    </div>
-
-    <div class="field">
-      <%= form.label :body %>
-      <%= form.text_area :body %>
-    </div>
-
-    <div class="field">
-      <%# <%= form.input :photo, as: :file %>
-      <%= form.label :photo %>
-      <%= form.file_field :photo %>
-    </div>
-
-    <div class="field">
-      <%= form.file_field :photos, multiple: true %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit "Create Post" %>
-    </div>
-  <% end %>
-
-
-</div>
+<%= form_with model: @post do |form| %>
+  <%= form.label :supertitle %>
+  <%= form.text_field :supertitle %>
+  <%= form.label :secondtitle %>
+  <%= form.text_field :secondtitle %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+  <%= form.label :body %>
+  <%= form.text_area :body %>
+  <%= form.label :important %>
+  <%= form.check_box :important %>
+  <%= form.label :photos %>
+  <%= form.file_field :photos, multiple: true %>
+  <%= form.submit %>
+<% end %>

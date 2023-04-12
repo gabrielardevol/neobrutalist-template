@@ -3,7 +3,9 @@
 class Post < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
-  # attribute :secondtitle, :supertitle, optional: true
+  attribute :secondtitle, optional: true
+  attribute :supertitle, optional: true
+
   attribute :important, :boolean, default: false
 
   has_many_attached :photos
