@@ -1,11 +1,19 @@
 .show-grid {
-  display: grid; grid-template-columns: 1fr 1fr; outline: 1px solid black
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  outline: 1px solid black
 }
 
 .show-grid-column {
   outline: 1px solid black;
-  min-height: 94vh
+  min-height: 94vh;
+  background-color: white;
 }
+
+.super-title, .title, .second-title {
+  font-size: 1.5em
+}
+
 
 @media only screen and (min-width: 480px)  {
   .show-grid {
@@ -13,11 +21,20 @@
     overflow: auto;
   }
   .show-grid-column:first-child {
-    min-width: 60ch;
+    // min-width: 60ch;
     overflow: auto;
   }
+
 }
 
-.super-title, .title, .second-title {
-  font-size: 1.5em
+@media only screen and (max-width: 680px) {
+
+  .show-grid {
+    grid-template-columns: 1fr
+  }
+
+  .show-grid-column {
+    min-height: fit-content
+
+  }
 }

@@ -1,43 +1,57 @@
+
 <style>
-
-nav > li {
-  list-style-type: none;
-  margin-left: 1.5em;
+.list > li {
+  font-size: 1.3em;
 }
 
-nav > li > a {
- color: black;
- text-decoration: none;
- font-size: 1.3em;
+.list >li > a , .list > li > ul > li > a {
+  text-decoration: none;
+  color: black;
 }
 
-nav > li > a:hover {
-  text-decoration: underline;
-  color: black
- }
-
-.more-margin {
-  margin-left: 3em
+.list >li > a:hover , .list > li > ul > li > a:hover {
+  color: purple;
 }
-
-
 </style>
 
 
   <nav>
-    <a href="/" style="text-decoration: none">
-      <div style="font-size: 5em; width: 100%; text-align: center; color: black;">LOGO</div>
+    <a
+    <%# href="/"  %>
+    style="text-decoration: none" class="post">
+      <div style="font-size: 5vw; width: 100%; text-align: center; color: black;">LOGO</div>
     </a>
-    <li><a href=page1>page 1</a></li>
-    <li><a href=page2>page 2</a></li>
-    <li><a href=page3>page 3</a></li>
-      <li class="more-margin"><a href=page1>page 1</a></li>
-      <li class="more-margin"><a href=page2>page 2</a></li>
-      <li class="more-margin"><a href=page3>page 3</a></li>
+    <%= image_tag('hamburger.svg', id: "hamburger") %>
+    <ul class="list">
+      <li><a href=page1>page 1</a></li>
+      <li><a href=page2>page 2</a></li>
+      <li><a href=page3>page 3</a>
+        <ul>
+          <li><a href=page1>page 1</a></li>
+          <li><a href=page2>page 2</a></li>
+          <li><a href=page3>page 3</a></li>
+        </ul>
+      </li>
+    </ul>
   </nav>
 
 
 
 <script>
   headerBar = document.querySelector(".header-bar")
+</script>
+
+<script>
+var hamburger = document.querySelector("#hamburger");
+var list = document.querySelector(".list");
+console.log(list.offsetWidth)
+hamburger.addEventListener("click", function() {
+  if (list.style.height === "0px") {
+    list.style.height = list.offsetWidth/2 + "px";
+  } else {
+    list.style.height = "0px";
+  }
+});
+
+
 </script>

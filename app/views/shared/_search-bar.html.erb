@@ -1,6 +1,6 @@
-       <div class="header-bar" style="height: 6vh; justify-content: right">
+       <div class="header-bar" style="">
 
-          <div id="search-bar" style="text-align: end; padding: 3px">
+          <div id="search-bar">
             <%= form_tag(posts_path, method: :get) do %>
               <%= text_field_tag :search, params[:search], placeholder: "Search posts" %>
 <%#               <%= image_tag 'image_path.jpg', alt: 'Image description' %>

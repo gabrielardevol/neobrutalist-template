@@ -1,8 +1,4 @@
-#search {
-  color: green;
-  font-size: 0.8em;
 
-}
 
 #search-bar {
   display: flex;
@@ -10,6 +6,18 @@
   align-items: center;
   background-color: transparent;
 
+  text-align: end;
+  padding: 3px
+
+}
+
+.header-bar {
+  height: 6vh;
+  justify-content: right;
+}
+
+#search {
+  font-size: 0.8em;
 }
 
 #search:hover, #search:focus {
@@ -44,4 +52,11 @@ input::placeholder {
 
 input:focus {
   outline: none;
+}
+
+
+@media only screen and (max-width: 450px)  {
+  .header-bar {
+    justify-content: center;
+  }
 }
