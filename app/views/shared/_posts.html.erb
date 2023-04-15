@@ -113,7 +113,10 @@ function expandHydePostShow() {
   console.log("_posts.html > expandHydePostsShow()")
   if (post.style.width == "0vw") {
   post.style.width = "80vw"
-  } else { post.style.width = "0vw" }
+  document.querySelector("#posts-grid").style.marginLeft = "80vw"
+  } else { post.style.width = "0vw";
+    document.querySelector("#posts-grid").style.marginLeft = "0vw"
+}
 }
 addEventListenerToPosts()
 </script>
