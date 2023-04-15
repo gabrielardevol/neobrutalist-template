@@ -8,8 +8,7 @@
     font-size: 1.1em
   }
 </style>
-
-<div class="gallery-grid" style="height: 94vh; min-width: 80vw">
+<div class="gallery-grid" style="min-width: 80vw">
   <% @posts.reverse[0..9].each do |post| %>
   <a class="gallery-grid-element post" style="position: relative;" data-post = <%=post.id%>
   <%# href="<%= post_path(post) %>" target="_blank" %>
@@ -47,23 +46,28 @@
   numberMin = 11
   numberMax = 14
   function logWhenScrolledToBottom() {
-      console.log("_posts.html > logWhenScrolledToBottom()")
+    console.log("_posts.html > logWhenScrolledToBottom()")
+    let posts = document.querySelector("body")
 
-    let posts = document.querySelector(".gallery-grid")
     postsScrollPosition = posts.scrollTop
     postsScrollHeight = posts.scrollHeight
     postsContainerHeight = posts.offsetHeight
-    if (postsScrollPosition + postsContainerHeight > posts.scrollHeight) {
 
+    if ((window.scrollY + window.innerHeight) == postsScrollHeight) {
       fetch(`/posts`)
       .then(response => response.text())
       .then(data => {
         let tempElement = document.createElement('div');
+
+        postsContainer = document.querySelector(".gallery-grid")
+
         tempElement.innerHTML = data.trim();
         tempElement.querySelectorAll(`div:nth-child(n+${numberMin}):nth-child(-n+${numberMax})`).forEach((a)=> {
           postsContainer.innerHTML += a.innerHTML;
           reSizeGridElements()
           addEventListenerToPosts()
+                console.log("a post has been fetched")
+
         }
       )
       numberMax += 4;
@@ -72,8 +76,9 @@
       .catch(error => console.error(error));
     }
   }
-  let postsContainer = document.querySelector(".gallery-grid")
-  postsContainer.addEventListener("scroll", logWhenScrolledToBottom);
+  // let postsContainer = document.querySelector(".gallery-grid")
+  // postsContainer.addEventListener("scroll", logWhenScrolledToBottom);
+  document.addEventListener("scroll", logWhenScrolledToBottom);
 
 
  //per a desplegar un post en el mateix homepage
