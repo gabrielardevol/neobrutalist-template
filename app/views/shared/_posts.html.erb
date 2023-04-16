@@ -8,31 +8,37 @@
     font-size: 1.1em
   }
 </style>
-<div class="gallery-grid" style="min-width: 80vw">
+<div class="gallery-grid" style="width: 75vw; position: relative; left: 0vw; transition: left 0.7s ease">
   <% @posts.reverse[0..9].each do |post| %>
   <a class="gallery-grid-element post" style="position: relative;" data-post = <%=post.id%>
   <%# href="<%= post_path(post) %>" target="_blank" %>
   >
     <div  style="position: relative; <% if post.photos.attached? %> background-image: url('<%= cl_image_path post.photos.first.key, height: 300,  width: 400, crop: :fill %>'); background-size: cover;  background-position: center; <% end %>  position: absolute; width: 100%; height: 100%; background-color: white; z-index: 0"></div>
     <div style="position: absolute; width: 100%; height: 100%; background-color: <%= 'white' if post.important == false || post.photos.attached?%> <%= ['sandybrown', 'darkseagreen'].sample if post.important && post.photos.attached? == false %>; opacity: 0.5; z-index: 0"></div>
-    <% if post.supertitle.present? %>
-    <p style="position: absolute; top: 0px;"><%= post.supertitle.upcase %></p>
-    <% end %>
+    <p class="gallery-grid-element-supertitle" style="position: absolute; top: 0px;"><%= post.supertitle.upcase %></p>
+
     <p class="gallery-grid-element-title" style="position: absolute">
       <%= post.title %>
     </p>
-    <p style="position: absolute; bottom: 0px;">
+    <p class="gallery-grid-element-secondtitle" style="position: absolute; bottom: 0px;">
       <%= post.secondtitle %>
     </p>
+
+    <p class="gallery-grid-element-body" style="display: none"><%= post.body %></p>
+
+    <% if post.photos.attached? %>
+    <% post.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, style: "display: none", class: "gallery-grid-element-photo" %>
+    <% end %>
+  <% end %>
+
   </a>
   <% end %>
 </div>
 
 <script>
-  console.log("_posts.html script is loaded")
 
   function reSizeGridElements() {
-  console.log("_posts.html > resizeGridElements()")
     document.querySelectorAll(".gallery-grid > a").forEach(function(div) {
       var width = div.offsetWidth;
       div.style.height = width + "px";
@@ -42,86 +48,5 @@
   window.addEventListener('resize', reSizeGridElements)
 </script>
 
-<script> // infinite scroll
-  numberMin = 11
-  numberMax = 14
-  function logWhenScrolledToBottom() {
-    console.log("_posts.html > logWhenScrolledToBottom()")
-    let posts = document.querySelector("body")
-
-    postsScrollPosition = posts.scrollTop
-    postsScrollHeight = posts.scrollHeight
-    postsContainerHeight = posts.offsetHeight
-
-    if ((window.scrollY + window.innerHeight) == postsScrollHeight) {
-      fetch(`/posts`)
-      .then(response => response.text())
-      .then(data => {
-        let tempElement = document.createElement('div');
-
-        postsContainer = document.querySelector(".gallery-grid")
-
-        tempElement.innerHTML = data.trim();
-        tempElement.querySelectorAll(`div:nth-child(n+${numberMin}):nth-child(-n+${numberMax})`).forEach((a)=> {
-          postsContainer.innerHTML += a.innerHTML;
-          reSizeGridElements()
-          addEventListenerToPosts()
-                console.log("a post has been fetched")
-
-        }
-      )
-      numberMax += 4;
-      numberMin += 4;
-      })
-      .catch(error => console.error(error));
-    }
-  }
-  // let postsContainer = document.querySelector(".gallery-grid")
-  // postsContainer.addEventListener("scroll", logWhenScrolledToBottom);
-  document.addEventListener("scroll", logWhenScrolledToBottom);
-
-
- //per a desplegar un post en el mateix homepage
-posts = document.querySelectorAll(".post")
-posts.forEach((post) => {
-  console.log("an eventListener 'showPost()' has been added to a post");
-  post.addEventListener("click", () => {
-    showPost(post);
-  });
-});
-
-function showPost(post) {
-  let id = post.dataset.post;
-  console.log("show post " + id);
-  fetch(`/posts`)
-    .then(response => response.text())
-    .then(data => {
-      let tempElement = document.createElement('div');
-      tempElement.innerHTML = data.trim();
-      let post = tempElement.querySelector(`[data-post="${id}"]`);
-      console.log(post);
-    }
-  )
-}
-
-function addEventListenerToPosts() {
-  console.log("_posts.html > addEventListenerToPosts()")
-  let post = document.querySelector("#post");
-  let posts = document.querySelectorAll(".post");
-  posts.forEach((post) => {
-    console.log("an eventListener 'expandHydePostShow()' has been added to a post")
-    post.addEventListener("click", expandHydePostShow)
-  })
-}
-
-function expandHydePostShow() {
-  console.log("_posts.html > expandHydePostsShow()")
-  if (post.style.width == "0vw") {
-  post.style.width = "80vw"
-  document.querySelector("#posts-grid").style.marginLeft = "80vw"
-  } else { post.style.width = "0vw";
-    document.querySelector("#posts-grid").style.marginLeft = "0vw"
-}
-}
-addEventListenerToPosts()
-</script>
+<%= javascript_include_tag 'infinite_scroll' %>
+<%= javascript_include_tag 'click_post' %>

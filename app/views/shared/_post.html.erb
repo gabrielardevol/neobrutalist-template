@@ -1,16 +1,18 @@
 <div class="show-grid" style="gap: 1px; background-color: smokewhite; min-height: 94vh; overflow: auto">
   <div class="show-grid-column" style="">
   <%# <div class="post"><-</div> %>
-  <i class="fa-sharp fa-light fa-arrow-left post"></i>
+    <%= image_tag('arrow.svg', style: 'width: 2.5em; padding: 0.5em; transform: rotate(180deg);', class: "post") %>
+
+  <%# <i class="fa-sharp fa-light fa-arrow-left post"></i> %>
     <div style="padding: 0.5em">
       <p class="super-title" style="width: 100%; border-bottom: 1px solid black">
-        supertitle
+
       </p>
       <p class="title" style="padding: 0em 0.8em 0em 0.8em; outline: 1px solid black; border-radius: 2em; width: fit-content; ">
-        title
+
       </p>
       <p class="second-title" >
-        secondtitle
+
       </p>
       <p class="body"style="max-width: 65ch">
         body

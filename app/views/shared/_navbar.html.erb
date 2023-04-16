@@ -1,58 +1,99 @@
 
 <style>
 /* L I S T */
-.list a {
+.index a {
   color: black; text-decoration: none;
   display: block;
-  padding: 0.6em;
+  padding: 0.2em;
 
-  font-size: 1.2em;
+  font-size: 1.1em;
 
   border-bottom: 1px solid black;
 }
 
-.list li:last-child > a:last-child{
-  /* border-bottom: 1px solid black; */
+ul.index {
+  background-color: black;
+  padding-left: 1em;
 }
 
-.list > li:first-child > a:first-child {
-  border-top: 1px solid black;
+li {
+  background-color: white;
 }
 
-.list li {
+li  {
   list-style-type: none;
 }
 
-.list {
+.index {
   padding: 0px;
 }
 
-.list a:hover {
+.index a:hover {
   color: white; background-color: black;
+}
+
+.languages-list {
+  /* border-bottom: 1px solid black; */
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.languages-list {
+  padding: 0.2em 0em;
+  width: fit-content;
+  margin: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.languages-list > li {
+  padding: 0em 0.6em;
+}
+
+.languages-list > li:not(:first-child) {
+  /* content: "|" */
+  border-left: 1px solid black
+}
 
 
+.languages-list > li:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 </style>
 
 
   <nav>
-    <a
-    <%# href="/"  %>
-    style="text-decoration: none" class="post">
-      <div style="font-size: 5vw; width: 100%; text-align: center; color: black;">LOGO</div>
+    <a style="text-decoration: none" class="post">
+      <div style="font-size: 7vw; width: 100%; text-align: center; color: black; position: sticky; top: 0px; background-color: white; border-bottom: 1px solid black">LOGO</div>
     </a>
     <%= image_tag('hamburger.svg', id: "hamburger") %>
 
+    <ul class="languages-list" style="">
+    <%languages = ["es", "en", "ar", "fr", "ru", "ur", "ch", "bu"]%>
+    <%languages.each do |lang|%>
+    <li><%=lang%></li>
+    <%end%>
+    </ul>
 
-    <ul class="list">
+    <ul class="index" style="border-top: 1px solid black;">
      <li> <a href=page1>page 1</a> </li>
      <li> <a href=page1>page 2 has a really long title</a> </li>
      <li> <a href=page1>page 3</a>
-        <ul>
+        <ul class="index">
           <li><a href=page1>page 3.1</a></li>
-          <li><a href=page1>page 3.2 has an even longer title, like really long</a></li>
+          <li><a href=page1>page 3.2 has an even longer title, like really long</a>
+            <ul class="index">
+            <li><a href=page1>page 3.2.1</a></li>
+            <li><a href=page1>page 3.2.2 has an even longer title, like really long</a></li>
+           </ul>
+          <li><a href="">page 4</a></li>
+        </li>
         </ul>
         </li>
+      <li> <a href=page1>page 4</a> </li>
+     <li> <a href=page1>page 5 has a really long title</a> </li>
     </ul>
   </nav>
 
@@ -65,7 +106,6 @@
 <script>
 var hamburger = document.querySelector("#hamburger");
 var list = document.querySelector(".list");
-console.log(list.offsetWidth)
 hamburger.addEventListener("click", function() {
   if (list.style.height === "0px") {
     list.style.height = list.offsetWidth/2 + "px";

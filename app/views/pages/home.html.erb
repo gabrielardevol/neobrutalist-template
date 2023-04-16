@@ -1,12 +1,8 @@
 <div style="position: sticky; top: 0; z-index: 10">
   <%= render "shared/search-bar"%>
-    <div id="post" style="width: 0vw; transition: width 0.7s ease; position: absolute; z-index: 10"><%= render "shared/post"%></div>
-
+  <div id="post" style="width: 0vw; transition: width 0.7s ease; position: absolute; z-index: 10"><%= render "shared/post"%></div>
 </div>
-<div style="display: flex; max-width: 80vw; overflow: hidden; position: relative">
-
+<div style="display: flex; overflow: hidden; position: relative">
   <div id="posts-grid" style="transition: margin-left 0.7s ease;">
-
   <%= render "shared/posts" %></div>
-
 </div>
